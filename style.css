@@ -1,0 +1,124 @@
+p {
+  margin: 0; /* マージンを削除 */
+}
+
+.quiz_box {
+  position: relative;
+  width: 1200px;
+  background-color: #ffffff;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.quiz_box .answer.correct {
+  background-color: #ffd2a7;
+  pointer-events: none; 
+}
+
+.quiz_box .answer.incorrect {
+  background-color: #cccccc;
+  pointer-events: none; 
+}
+
+.quiz_box .answer.correct.incorrect {
+  background-color: #ffd2a7; /* 正解のスタイルを優先 */
+}
+
+.quiz_box .answer.correct.incorrect p {
+  color: #999999; /* 不正解のテキストを灰色に */
+}
+ 
+.quiz_box .answer_result {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+}
+ 
+.quiz_box .active_answer {
+  visibility: visible;
+  opacity: 0.8;
+}
+ 
+.quiz_box .active_result {
+  visibility: visible;
+  opacity: 1;
+}
+ 
+.quiz_box .question_number {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #a0a0a0;
+  font-weight: bold;
+  font-size: 28px;
+}
+ 
+.quiz_box .question {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.quiz_box .image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 170px; 
+}
+ 
+.quiz_box .answer_box {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 40px;
+  width: 1000px;
+}
+ 
+.quiz_box .answer_box .answer {
+  border: solid 1px #000000;
+  width: 40%;
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 28px;
+  border-radius: 10px;
+  color: #000000;
+}
+
+.ending_page .result_title {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #a0a0a0;
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.ending_page .image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 40px;
+  max-width: 170px; 
+}
+
+.ending_page .answer_result_text {
+  font-size: 28px;
+  padding-top: 10px;
+  text-align: center;
+}
