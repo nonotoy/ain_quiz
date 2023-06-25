@@ -97,7 +97,7 @@ const quiz = [
                     'アトゥイサㇺ　タ　オカイ',
                     'コタン　タ　オカイ',
                     'ニソㇿ　ペカ　ホプニ',
-                    'キムタ　オカイ＿',
+                    'キムタ　オカイ',
                 ],
                 correct: 'キムタ　オカイ'
             },
@@ -111,12 +111,17 @@ let score = 0;
 const $button = document.querySelectorAll('.answer');
 const buttonLength = $button.length;
 const $image = document.getElementById('js-image');
+const $prevButton = document.getElementById('prev-button');
+const $nextButton = document.getElementById('next-button');
 
 const setupQuiz = () => {
     applyTextWithParagraphs(document.getElementById('js-question'), quiz[quizCount].question);
     applyTextWithParagraphs(document.getElementById('js-number'), quiz[quizCount].questionNumber);
     
     $image.src = quiz[quizCount].image;
+
+    // 選択肢の順番をランダムにシャッフル
+    shuffleArray(quiz[quizCount].answers);
 
     let buttonCount = 0;
 
@@ -125,7 +130,26 @@ const setupQuiz = () => {
         buttonCount++;
     }
 }
+
 setupQuiz();
+
+
+// 前の問題に戻るボタンのクリックイベント
+$prevButton.addEventListener('click', function() {
+    if (quizCount > 0) {
+        quizCount--;
+        setupQuiz();
+    }
+});
+
+// 次の問題に進むボタンのクリックイベント
+$nextButton.addEventListener('click', function() {
+    if (quizCount < quizLength - 1) {
+        quizCount++;
+        setupQuiz();
+    }
+});
+  
 
 let clickedCount = 0;
 while (clickedCount < buttonLength) {
@@ -213,6 +237,7 @@ while (clickedCount < buttonLength) {
     });       
     
     clickedCount++;
+    
 }
 
 // ハイライトをリセットする関数
@@ -220,5 +245,13 @@ function resetHighlight() {
     for (let i = 0; i < buttonLength; i++) {
         $button[i].classList.remove("correct");
         $button[i].classList.remove("incorrect");
+    }
+}
+
+// 選択肢をシャッフル
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
 }

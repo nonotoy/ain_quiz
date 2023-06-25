@@ -1,26 +1,31 @@
 <!-- https://www.giv.co.jp/member_tweet/2156/ -->
 <!DOCTYPE html>
 <html lang='en'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <script src='script.js' defer></script>
-    <title>アイヌイタッカニ　クイズアンロー！＿</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-   <section class="quiz_box">
-      <div class="answer_correct"></div>
-      <div class="answer_incorrect"></div>
-      <div class="question_number" id="js-number"></div>
-      <h2 class="question" id="js-question"></h2>
-      <img src="" class="image" id="js-image">
-      <div class="answer_box">
-          <button class="answer js-answer"></button>
-          <button class="answer js-answer"></button>
-          <button class="answer js-answer"></button>
-          <button class="answer js-answer"></button>
-      </div>
-  </section>
-</body>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <script src='script.js' defer></script>
+        <title>アイヌイタッカニ　クイズアンロー！</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <section class="quiz_box">
+            <!-- ボタンの追加 -->
+            <div class="button_box">
+                <button id="prev-button">戻る</button>
+                <button id="next-button">次へ</button>
+            </div>
+            <div class="answer_correct"></div>
+            <div class="answer_incorrect"></div>
+            <div class="question_number" id="js-number"></div>
+            <h2 class="question" id="js-question"></h2>
+            <img src="" class="image" id="js-image">
+            <div class="answer_box">
+                <button class="answer js-answer"></button>
+                <button class="answer js-answer"></button>
+                <button class="answer js-answer"></button>
+                <button class="answer js-answer"></button>
+            </div>
+        </section>
+    </body>
 </html>
