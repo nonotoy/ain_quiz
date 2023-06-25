@@ -17,90 +17,150 @@ function applyTextWithParagraphs(element, text) {
 }
 
 const quiz = [
-            {
-                questionNumber: 'ピシ #1',
-                question: "ウンマ　ヘマンタ　エラマス？",
-                image: "image/A013.png",
-                answers: [
-                    'チェㇷ゚',
-                    'セイ',
-                    'キナ',
-                    'キキㇼ',
-                ],
-                correct: 'キナ'
-            },
-            {
-                questionNumber: 'ピシ #2',
-                question: "タンペ　ヘマンタ　アン？",
-                image: "image/A029.jpg",
-                answers: [
-                    'ハㇺ',
-                    'マキㇼ',
-                    'ピイェ',
-                    'カㇷ゚',
-                ],
-                correct: 'カㇷ゚'
-            },
-            {
-                questionNumber: 'ピシ #3',
-                question: "マカナㇰ　ネ　シリ　アン？",
-                image: "image/C001.png",
-                answers: [
-                    'アㇷ゚ト',
-                    'カウカウ',
-                    'ウパㇱ',
-                    'ウラㇻ',
-                ],
-                correct: 'アㇷ゚ト'
-            },
-            {
-                questionNumber: 'ピシ #4',
-                question: "チョイペㇷ゚　ヘンパㇰペ　アン？",
-                image: "image/B001.png",
-                answers: [
-                    'イワンペ',
-                    'レㇷ゚',
-                    'イサㇺ',
-                    'アㇱクネㇷ゚',
-                ],
-                correct: 'アㇱクネㇷ゚'
-            },
-            {
-                questionNumber: 'ピシ #5',
-                question: "タンペ　ヘマンタ　アン？",
-                image: "image/A020.png",
-                answers: [
-                    'アムㇱペ',
-                    'アトゥイコㇺ',
-                    'ホㇿケテレケㇷ゚',
-                    'エペッペッケ',
-                ],
-                correct: 'ホㇿケテレケㇷ゚'
-            },
-            {
-                questionNumber: 'ピシ #6',
-                question: "タン オッカヨ　ヘマンタ　イキ？",
-                image: "image/D004.png",
-                answers: [
-                    'ケイタイ　アニ　シノッ',
-                    'オンガク ヌ',
-                    'シノッチャキ',
-                    'カンカミ　ヌカㇻ',
-                ],
-                correct: 'オンガク ヌ'
-            },
-            {
-                questionNumber: 'ピシ #7',
-                question: 'フナㇰタ　キムンカムイ　オカイ　ルウェ？',
-                image: "image/A005.png",
-                answers: [
-                    'アトゥイサㇺ　タ　オカイ',
-                    'コタン　タ　オカイ',
-                    'ニソㇿ　ペカ　ホプニ',
-                    'キムタ　オカイ',
-                ],
-                correct: 'キムタ　オカイ'
-            },
+        {
+            questionNumber: 'ピシ #1',
+            question: "アトゥイ　オッタ　シクㇷ゚ペ　ヘマンタ　アン？",
+            image: "C008.png",
+            answers: [
+                'フンペ',
+                'ユㇰ',
+                'ソヤ',
+                'アマメチカッポ',
+            ],
+            correct: 'フンペ'
+        },
+        {
+            questionNumber: 'ピシ #2',
+            question: "タンペ　ヘマンタ　アン？",
+            image: "B020.png",
+            answers: [
+                'マタンプシ',
+                'ホㇱ',
+                'テクンペ',
+                'テタラペ',
+            ],
+            correct: 'ホㇱ'
+        },
+        {
+            questionNumber: 'ピシ #3',
+            question: "フラルイ　コㇿカ　ケラアン　アエㇷ゚　ヘマンタ　アン？",
+            image: "",
+            answers: [
+                'プクサキナ',
+                'トゥレㇷ゚',
+                'ソㇿマ',
+                'プクサ',
+            ],
+            correct: 'プクサ'
+        },
+        {
+            questionNumber: 'ピシ #4',
+            question: "タンペ　ヘマンタ　アン？",
+            image: "A003.png",
+            answers: [
+                'セタ',
+                'エㇾム',
+                'ユㇰ',
+                'チャペ',
+            ],
+            correct: 'ユㇰ'
+        },
+        {
+            questionNumber: 'ピシ #5',
+            question: "マカナㇰ　ネ　シリ　アン？",
+            image: "D006.png",
+            answers: [
+                'イルㇱカ',
+                'イペ',
+                'チㇱ',
+                'ミナ',
+            ],
+            correct: 'ミナ'
+        },
+        {
+            questionNumber: 'ピシ #6',
+            question: "アㇷ゚トキクンペ　ヘンパㇰペ　アン？",
+            image: "B026.png",
+            answers: [
+                'レㇷ゚',
+                'トゥㇷ゚',
+                'イワンペ',
+                'アシㇰネㇷ゚',
+            ],
+            correct: 'レㇷ゚'
+        },
+        {
+            questionNumber: 'ピシ #7',
+            question: "タンペ　ヘマンタ　アン？",
+            image: "",
+            answers: [
+                'キキㇼ',
+                'カムイチカㇷ゚',
+                'イセポ',
+                'キムンカムイ',
+            ],
+            correct: 'カムイチカㇷ゚'
+        },
+        {
+            questionNumber: 'ピシ #8',
+            question: "シウニン　シキ　メノコ　フンナ　アン？",
+            image: "",
+            answers: [
+                'チカパㇱ',
+                'インカラマㇰ',
+                'アシㇼパ',
+                'エノノカ',
+            ],
+            correct: 'アシㇼパ'
+        },
+        {
+            questionNumber: 'ピシ #9',
+            question: "タンペ　ヘマンタ　アン？",
+            image: "B010.png",
+            answers: [
+                'トノト',
+                'セセㇰ　ウセイ',
+                'ワッカ',
+                'ナㇺ　ワッカ',
+            ],
+            correct: 'セセㇰ　ウセイ'
+        },
+        {
+            questionNumber: 'ピシ #10',
+            question: "マカナㇰ　ネ　シリ　アン？",
+            image: "D026.png",
+            answers: [
+                'ア　ワ　アン',
+                'ネㇷ゚キ　コㇿ　アン',
+                'シノッ　コㇿ　アン',
+                'モコㇿ　ワ　アン',
+            ],
+            correct: 'モコㇿ　ワ　アン'
+        },
+        {
+            questionNumber: 'ピシ #11',
+            question: "クエラマスㇷ゚　ネㇷ゚タ　アン？",
+            image: "",
+            answers: [
+                'ユㇰ',
+                'チャペ',
+                'セタ',
+                'チカㇷ゚',
+            ],
+            correct: 'チャペ'
+        },
+        {
+            questionNumber: 'ピシ #12',
+            question: "ナヌ　クンネ　モユㇰ　レヘ　ネㇷ゚タ　アン？",
+            image: "A014.png",
+            answers: [
+                'トイモユㇰ',
+                'レキモユㇰ',
+                'スケモユㇰ',
+                'アンチモユㇰ',
+            ],
+            correct: 'スケモユㇰ'
+        },
         ]
 
 
