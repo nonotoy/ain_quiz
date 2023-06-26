@@ -234,7 +234,7 @@ while (clickedCount < buttonLength) {
             $button[i].disabled = true;
         }
 
-        // クイズ結果の表示
+        // クイズ結果の表示.
         function showQuizResult() {
             const answerResultText = document.getElementById('js-answer-result-text');
             answerResultText.textContent = 'ア=オケレナー！　' + score + '/' + quizLength + '　エ＝エラマン　ルウェ　ネー！ピㇼカワー！';
