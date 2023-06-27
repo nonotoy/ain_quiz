@@ -20,7 +20,7 @@ const quiz = [
         {
             questionNumber: 'ピシ #1',
             question: "アトゥイ　オッタ　シクㇷ゚ペ　ヘマンタ　アン？",
-            image: "C008.png",
+            image: "image/C008.png",
             answers: [
                 'フンペ',
                 'ユㇰ',
@@ -32,7 +32,7 @@ const quiz = [
         {
             questionNumber: 'ピシ #2',
             question: "タンペ　ヘマンタ　アン？",
-            image: "B020.png",
+            image: "image/B020.png",
             answers: [
                 'マタンプシ',
                 'ホㇱ',
@@ -56,7 +56,7 @@ const quiz = [
         {
             questionNumber: 'ピシ #4',
             question: "タンペ　ヘマンタ　アン？",
-            image: "A003.png",
+            image: "image/A003.png",
             answers: [
                 'セタ',
                 'エㇾム',
@@ -68,7 +68,7 @@ const quiz = [
         {
             questionNumber: 'ピシ #5',
             question: "マカナㇰ　ネ　シリ　アン？",
-            image: "D006.png",
+            image: "image/D006.png",
             answers: [
                 'イルㇱカ',
                 'イペ',
@@ -80,7 +80,7 @@ const quiz = [
         {
             questionNumber: 'ピシ #6',
             question: "アㇷ゚トキクンペ　ヘンパㇰペ　アン？",
-            image: "B026.png",
+            image: "image/B026.png",
             answers: [
                 'レㇷ゚',
                 'トゥㇷ゚',
@@ -116,7 +116,7 @@ const quiz = [
         {
             questionNumber: 'ピシ #9',
             question: "タンペ　ヘマンタ　アン？",
-            image: "B010.png",
+            image: "image/B010.png",
             answers: [
                 'トノト',
                 'セセㇰ　ウセイ',
@@ -128,7 +128,7 @@ const quiz = [
         {
             questionNumber: 'ピシ #10',
             question: "マカナㇰ　ネ　シリ　アン？",
-            image: "D026.png",
+            image: "image/D026.png",
             answers: [
                 'ア　ワ　アン',
                 'ネㇷ゚キ　コㇿ　アン',
@@ -152,7 +152,7 @@ const quiz = [
         {
             questionNumber: 'ピシ #12',
             question: "ナヌ　クンネ　モユㇰ　レヘ　ネㇷ゚タ　アン？",
-            image: "A014.png",
+            image: "image/A014.png",
             answers: [
                 'トイモユㇰ',
                 'レキモユㇰ',
