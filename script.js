@@ -1,21 +1,3 @@
-function applyTextWithParagraphs(element, text) {
-    // 元の内容を消去
-    element.innerHTML = '';
-
-    // 改行でテキストを分割
-    let lines = text.split('\n');
-
-    // 各行について処理を行う
-    for(let i = 0; i < lines.length; i++) {
-        // 新しいp要素を作成し、テキストを設定
-        let p = document.createElement('p');
-        p.textContent = lines[i];
-
-        // p要素を指定された要素に追加
-        element.appendChild(p);
-    }
-}
-
 const quiz = [
         {
             questionNumber: 'ピシ #1',
@@ -161,157 +143,245 @@ const quiz = [
             ],
             correct: 'スケモユㇰ'
         },
-        ]
-
+]
 
 let quizCount = 0;
-const quizLength = quiz.length;
 let score = 0;
 
 const $button = document.querySelectorAll('.answer');
-const buttonLength = $button.length;
 const $image = document.getElementById('js-image');
-const $prevButton = document.getElementById('prev-button');
-const $nextButton = document.getElementById('next-button');
+// const $prevButton = document.getElementById('prev-button');
+// const $nextButton = document.getElementById('next-button');
+
+const buttonLength = $button.length;
+const quizLength = quiz.length;
+
+// answeredQuestionsの初期化
+let answeredQuestions = Array(quizLength).fill(null);
+
+function applyTextWithParagraphs(element, text) {
+    // 元の内容を消去
+    element.innerHTML = '';
+
+    // 改行でテキストを分割
+    let lines = text.split('\n');
+
+    // 各行について処理を行う
+    for(let i = 0; i < lines.length; i++) {
+        // 新しいp要素を作成し、テキストを設定
+        let p = document.createElement('p');
+        p.textContent = lines[i];
+
+        // p要素を指定された要素に追加
+        element.appendChild(p);
+    }
+}
 
 const setupQuiz = () => {
-    applyTextWithParagraphs(document.getElementById('js-question'), quiz[quizCount].question);
-    applyTextWithParagraphs(document.getElementById('js-number'), quiz[quizCount].questionNumber);
-    
-    $image.src = quiz[quizCount].image;
+  applyTextWithParagraphs(document.getElementById('js-question'), quiz[quizCount].question);
+  applyTextWithParagraphs(document.getElementById('js-number'), quiz[quizCount].questionNumber);
 
-    // 選択肢の順番をランダムにシャッフル
-    shuffleArray(quiz[quizCount].answers);
+  $image.src = quiz[quizCount].image;
 
-    let buttonCount = 0;
+  // 選択肢の順番をランダムにシャッフル
+  //shuffleArray(quiz[quizCount].answers);
 
-    while (buttonCount < buttonLength) {
-        applyTextWithParagraphs($button[buttonCount], quiz[quizCount].answers[buttonCount]);
-        buttonCount++;
-    }
-}
+  let buttonCount = 0;
 
-setupQuiz();
+  while (buttonCount < buttonLength) {
+    applyTextWithParagraphs($button[buttonCount], quiz[quizCount].answers[buttonCount]);
+    buttonCount++;
+  }
 
+  // 選択肢のクリックを有効化
+  enableButtons();
+};
 
-// 前の問題に戻るボタンのクリックイベント
-$prevButton.addEventListener('click', function() {
-    if (quizCount > 0) {
-        quizCount--;
-        setupQuiz();
-    }
-});
-
-// 次の問題に進むボタンのクリックイベント
-$nextButton.addEventListener('click', function() {
-    if (quizCount < quizLength - 1) {
-        quizCount++;
-        setupQuiz();
-    }
-});
-  
-
-let clickedCount = 0;
-while (clickedCount < buttonLength) {
-    $button[clickedCount].addEventListener("click", function (event) { // クリックイベントのコールバック関数の引数にeventを追加
-        const clickedAnswer = event.currentTarget;
-   
-        if (quiz[quizCount].correct.includes(clickedAnswer.textContent)) {
-            clickedAnswer.classList.add("correct");
-            score++;
-        } else {
-            for (let i = 0; i < buttonLength; i++) {
-                if (quiz[quizCount].correct.includes($button[i].textContent)) {
-                    $button[i].classList.add("correct");
-                } else {
-                    $button[i].classList.add("incorrect");
-                }
-            }
-        }
-
-        // 選択肢のクリックを無効化
-        for (let i = 0; i < buttonLength; i++) {
-            $button[i].disabled = true;
-        }
-
-        // クイズ結果の表示.
-        function showQuizResult() {
-            const answerResultText = document.getElementById('js-answer-result-text');
-            answerResultText.textContent = 'ア=オケレナー！　' + score + '/' + quizLength + '　エ＝エラマン　ルウェ　ネー！ピㇼカワー！';
-        }
-        
-        // エンディングの表示とスコアの更新
-        function showEndingPage() {
-            const quizBox = document.querySelector('.quiz_box');
-            const endingPage = document.createElement('div');
-            const scoreElement = document.createElement('p');
-            const endingImage = document.createElement('img');
-            const answerResultText = document.createElement('div');
-          
-            endingPage.classList.add('ending_page');
-            endingPage.innerHTML = '<h2 class="result_title">パㇰノカ！</h2>';
-            endingImage.classList.add('image');
-            endingImage.src = "image/Ending.png";
-            endingImage.innerHTML = '<img src="" class="image">';
-            answerResultText.classList.add('answer_result_text');
-            if (score > 0) {
-                answerResultText.innerHTML = '<p class="answer_result_text">ア=オケレナー！　' + score + '/' + quizLength + '　エ＝エラマン　ルウェ　ネー！ピㇼカワー！</p>';
-            } else {
-                answerResultText.innerHTML = '<p class="answer_result_text">ア=オケレナー！　' + score + '/' + quizLength + '　エ＝エラマン　ルウェ　ネー！<br>タン　クイズ　ホカンパ　シリ　アン？</p>';                 
-            }
-
-            
-            endingPage.appendChild(scoreElement);
-            endingPage.appendChild(endingImage);
-            endingPage.appendChild(answerResultText);
-            quizBox.parentNode.replaceChild(endingPage, quizBox);
-          }
-
-        // クイズの進行と終了時の処理
-        function proceedQuiz() {
-            if (quizCount < quizLength) {
-              setupQuiz();
-              for (let i = 0; i < buttonLength; i++) {
-                $button[i].disabled = false;
-              }
-            } else {
-              showEndingPage();
-            }
-        }
-          
-      
-        // 一定の遅延後に次の問題に遷移する処理を追加
-        setTimeout(function () {
-            resetHighlight(); // ハイライトをリセット
-            quizCount++;
-            proceedQuiz();
-            if (quizCount < quizLength) {
-                setupQuiz();
-                // 選択肢のクリックを有効化
-                for (let i = 0; i < buttonLength; i++) {
-                    $button[i].disabled = false;
-                }
-            }
-        }, 1000);
-        
-    });       
-    
-    clickedCount++;
-    
-}
-
-// ハイライトをリセットする関数
-function resetHighlight() {
+// 選択肢のクリックを有効化
+function enableButtons() {
     for (let i = 0; i < buttonLength; i++) {
-        $button[i].classList.remove("correct");
-        $button[i].classList.remove("incorrect");
+        $button[i].disabled = false;
+    }
+}
+
+// 選択肢のクリックを無効化
+function disableButtons() {
+    for (let i = 0; i < buttonLength; i++) {
+        $button[i].disabled = true;
     }
 }
 
 // 選択肢をシャッフル
 function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+// 選択肢を表示
+setupQuiz();
+
+
+// ボタンのクリックイベントの処理
+function handleButtonClick(event) {
+  const clickedAnswer = event.currentTarget;
+
+  // 回答済みの問題かどうかをチェック
+  if (answeredQuestions[quizCount] !== null) {
+    return; // 回答済みの問題なので、処理を中断する
+  }
+
+  // 回答の正誤判定処理
+  if (quiz[quizCount].correct.includes(clickedAnswer.textContent)) {
+    clickedAnswer.classList.add("correct");
+    score++;
+  } else {
+    for (let i = 0; i < buttonLength; i++) {
+      if (quiz[quizCount].correct.includes($button[i].textContent)) {
+        $button[i].classList.add("correct");
+      } else {
+        $button[i].classList.add("incorrect");
+      }
     }
+  }
+
+  disableButtons();
+
+
+  // 選択肢のクリックを無効化
+  for (let i = 0; i < buttonLength; i++) {
+    $button[i].disabled = true;
+  }
+
+  // 回答の保存
+  answeredQuestions[quizCount] = Array.from($button).indexOf(clickedAnswer);
+
+  // 一定の遅延後に次の問題に遷移する処理を追加
+  setTimeout(function () {
+    quizCount++;
+    proceedQuiz();
+    if (quizCount < quizLength) {
+      setupQuiz();
+      enableButtons();
+    }
+  }, 1000);
+}
+
+// ボタンのクリックイベントのリスナーを登録する
+for (let i = 0; i < buttonLength; i++) {
+  $button[i].addEventListener("click", handleButtonClick);
+}
+
+// クイズの進行と終了時の処理
+function proceedQuiz() {
+  if (quizCount < quizLength) {
+    restoreClass();
+    enableButtons();
+  } else {
+    showEndingPage();
+  }
+}
+
+// クイズの進行と終了時の処理の呼び出し元でansweredQuestionsの配列を更新する
+function updateAnsweredQuestions() {
+  answeredQuestions[quizCount] = null; // 未回答の場合はnullにする
+}
+
+// クラスをリセットする関数
+function resetClass() {
+  for (let i = 0; i < buttonLength; i++) {
+    $button[i].classList.remove("correct");
+    $button[i].classList.remove("incorrect");
+    $button[i].disabled = false; // ボタンをアクティブにする
+  }
+}
+
+// クラスを復元する関数
+function restoreClass() {
+  resetClass(); // クラスをリセット
+
+  if (answeredQuestions[quizCount] !== null) {
+    // 回答済みの問題の場合
+    const answeredIndex = answeredQuestions[quizCount];
+    if (quiz[quizCount].correct.includes($button[answeredIndex].textContent)) {
+      $button[answeredIndex].classList.add('correct');
+    } else {
+      $button[answeredIndex].classList.add('incorrect');
+    }
+    $button[answeredIndex].disabled = true; // 回答済みの問題はボタンを非アクティブにする
+
+    // 他の選択肢のボタンを無効化する
+    for (let i = 0; i < buttonLength; i++) {
+      if (i !== answeredIndex) {
+        $button[i].disabled = true;
+      }
+    }
+  } else {
+    enableButtons();
+  }
+}
+
+$prevButton.addEventListener('click', function () {
+    if (quizCount > 0) {
+      quizCount--;
+      resetClass();
+      updateAnsweredQuestions();
+      restoreClass();
+      setupQuiz();
+      disableButtons();
+    }
+  }
+);
+  
+  $nextButton.addEventListener('click', function () {
+    if (quizCount < quizLength - 1) {
+      quizCount++;
+      resetClass();
+      restoreClass();
+      setupQuiz();
+      disableButtons();
+    }
+  }
+);
+
+
+// クイズの初期化
+function initializeQuiz() {
+    quizCount = 0;
+    score = 0;
+    answeredQuestions = Array(quizLength).fill(null);
+    setupQuiz();
+    resetClass();
+    enableButtons();
+}
+  
+// クイズの初期化
+initializeQuiz();
+
+
+// エンディングの表示とスコアの更新
+function showEndingPage() {
+    const quizBox = document.querySelector('.quiz_box');
+    const endingPage = document.createElement('div');
+    const scoreElement = document.createElement('p');
+    const endingImage = document.createElement('img');
+    const answerResultText = document.createElement('div');
+  
+    endingPage.classList.add('ending_page');
+    endingPage.innerHTML = '<h2 class="result_title">パㇰノカ！</h2>';
+    endingImage.classList.add('image');
+    endingImage.src = "image/Ending.png";
+    answerResultText.classList.add('answer_result_text');
+  
+    if (score > 0) {
+      answerResultText.innerHTML = '<p class="answer_result_text">ア=オケレナー！　' + score + '/' + quizLength + '　エ＝エラマン　ルウェ　ネー！ピㇼカワー！</p>';
+    } else {
+      answerResultText.innerHTML = '<p class="answer_result_text">ア=オケレナー！　' + score + '/' + quizLength + '　エ＝エラマン　ルウェ　ネー！<br>タン　クイズ　ホカンパ　シリ　アン？</p>';
+    }
+  
+    endingPage.appendChild(scoreElement);
+    endingPage.appendChild(endingImage);
+    endingPage.appendChild(answerResultText);
+    quizBox.parentNode.replaceChild(endingPage, quizBox);
 }
