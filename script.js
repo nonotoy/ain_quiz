@@ -143,6 +143,18 @@ const quiz = [
             ],
             correct: 'スケモユㇰ'
         },
+        {
+          questionNumber: 'ピシ #13',
+          question: "シレトッコㇿクㇽ　イナンペ？",
+          image: "",
+          answers: [
+              'ピㇼカ　オトピ',
+              'ポロ　チャロ',
+              'タンネ　シㇰラㇷ゚',
+              'ルイェ　ランヌマ',
+          ],
+          correct: 'ピㇼカ　オトピ'
+      },
 ]
 
 let quizCount = 0;
@@ -150,8 +162,8 @@ let score = 0;
 
 const $button = document.querySelectorAll('.answer');
 const $image = document.getElementById('js-image');
-// const $prevButton = document.getElementById('prev-button');
-// const $nextButton = document.getElementById('next-button');
+const $prevButton = document.getElementById('prev-button');
+const $nextButton = document.getElementById('next-button');
 
 const buttonLength = $button.length;
 const quizLength = quiz.length;
@@ -193,8 +205,7 @@ const setupQuiz = () => {
     buttonCount++;
   }
 
-  // 選択肢のクリックを有効化
-  enableButtons();
+  restoreClass();
 };
 
 // 選択肢のクリックを有効化
@@ -233,29 +244,22 @@ function handleButtonClick(event) {
   }
 
   // 回答の正誤判定処理
-  if (quiz[quizCount].correct.includes(clickedAnswer.textContent)) {
-    clickedAnswer.classList.add("correct");
-    score++;
-  } else {
-    for (let i = 0; i < buttonLength; i++) {
-      if (quiz[quizCount].correct.includes($button[i].textContent)) {
-        $button[i].classList.add("correct");
-      } else {
-        $button[i].classList.add("incorrect");
-      }
-    }
-  }
-
-  disableButtons();
-
-
-  // 選択肢のクリックを無効化
   for (let i = 0; i < buttonLength; i++) {
-    $button[i].disabled = true;
+    if (quiz[quizCount].correct.includes($button[i].textContent)) {
+      $button[i].classList.add("correct");
+      // ユーザがクリックした選択肢が正解であった場合、スコアをインクリメント
+      if ($button[i] === clickedAnswer) {
+        score++;
+      }
+    } else {
+      $button[i].classList.add("incorrect");
+    }
   }
 
   // 回答の保存
   answeredQuestions[quizCount] = Array.from($button).indexOf(clickedAnswer);
+
+  disableButtons();
 
   // 一定の遅延後に次の問題に遷移する処理を追加
   setTimeout(function () {
@@ -303,48 +307,46 @@ function restoreClass() {
 
   if (answeredQuestions[quizCount] !== null) {
     // 回答済みの問題の場合
-    const answeredIndex = answeredQuestions[quizCount];
-    if (quiz[quizCount].correct.includes($button[answeredIndex].textContent)) {
-      $button[answeredIndex].classList.add('correct');
-    } else {
-      $button[answeredIndex].classList.add('incorrect');
-    }
-    $button[answeredIndex].disabled = true; // 回答済みの問題はボタンを非アクティブにする
-
-    // 他の選択肢のボタンを無効化する
     for (let i = 0; i < buttonLength; i++) {
-      if (i !== answeredIndex) {
-        $button[i].disabled = true;
+      if (quiz[quizCount].correct.includes($button[i].textContent)) {
+        $button[i].classList.add('correct');
+      } else {
+        $button[i].classList.add('incorrect');
       }
+      // 回答済みの問題はボタンを非アクティブにする
+      $button[i].disabled = true;
     }
-  } else {
-    enableButtons();
   }
 }
 
 $prevButton.addEventListener('click', function () {
     if (quizCount > 0) {
       quizCount--;
-      resetClass();
-      updateAnsweredQuestions();
       restoreClass();
       setupQuiz();
-      disableButtons();
+      // チェック：現在の問題が未解答であれば選択肢を有効化
+      if (answeredQuestions[quizCount] === null) {
+        enableButtons();
+      } else {
+        disableButtons();
+      }
     }
   }
 );
   
-  $nextButton.addEventListener('click', function () {
-    if (quizCount < quizLength - 1) {
-      quizCount++;
-      resetClass();
-      restoreClass();
-      setupQuiz();
+$nextButton.addEventListener('click', function () {
+  if (quizCount < quizLength - 1) {
+    quizCount++;
+    restoreClass();
+    setupQuiz();
+    // チェック：現在の問題が未解答であれば選択肢を有効化
+    if (answeredQuestions[quizCount] === null) {
+      enableButtons();
+    } else {
       disableButtons();
     }
   }
-);
-
+});
 
 // クイズの初期化
 function initializeQuiz() {
@@ -358,7 +360,6 @@ function initializeQuiz() {
   
 // クイズの初期化
 initializeQuiz();
-
 
 // エンディングの表示とスコアの更新
 function showEndingPage() {
