@@ -26,7 +26,7 @@ const quiz = [
         {
             questionNumber: 'ピシ #3',
             question: "フラルイ　コㇿカ　ケラアン　アエㇷ゚　ヘマンタ　アン？",
-            image: "",
+            image: "image/kito.jpg",
             answers: [
                 'プクサキナ',
                 'トゥレㇷ゚',
@@ -49,7 +49,7 @@ const quiz = [
         },
         {
             questionNumber: 'ピシ #5',
-            question: "マカナㇰ　ネ　シリ　アン？",
+            question: "マカナㇰ　イキ　シリ　アン？",
             image: "image/D006.png",
             answers: [
                 'イルㇱカ',
@@ -74,7 +74,7 @@ const quiz = [
         {
             questionNumber: 'ピシ #7',
             question: "タンペ　ヘマンタ　アン？",
-            image: "",
+            image: "image/kamuycikap.jpg",
             answers: [
                 'キキㇼ',
                 'カムイチカㇷ゚',
@@ -109,7 +109,7 @@ const quiz = [
         },
         {
             questionNumber: 'ピシ #10',
-            question: "マカナㇰ　ネ　シリ　アン？",
+            question: "マカナㇰ　イキ　シリ　アン？",
             image: "image/D026.png",
             answers: [
                 'ア　ワ　アン',
