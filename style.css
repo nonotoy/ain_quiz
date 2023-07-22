@@ -1,3 +1,8 @@
+/* サイト全体のフォント指定 */
+body {
+  font-family: sans-serif;
+}
+
 p {
   margin: 0; /* マージンを削除. */
 }
@@ -71,7 +76,8 @@ p {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  max-width: 170px; 
+  max-height: 500px; 
+  max-width: 300px; 
 }
  
 .quiz_box .answer_box {
