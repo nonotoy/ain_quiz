@@ -86,7 +86,7 @@ const quiz = [
         {
             questionNumber: 'ピシ #8',
             question: "シウニン　シキ　メノコ　フンナ　アン？",
-            image: "",
+            image: "image/535726.jpg",
             answers: [
                 'チカパㇱ',
                 'インカラマㇰ',
@@ -146,7 +146,7 @@ const quiz = [
         {
           questionNumber: 'ピシ #13',
           question: "シレトッコㇿクㇽ　イナンペ？",
-          image: "",
+          image: "image/IMG_0006.jpg",
           answers: [
               'ピㇼカ　オトピ',
               'ポロ　チャロ',
