@@ -122,7 +122,7 @@ const quiz = [
         {
             questionNumber: 'ピシ #11',
             question: "クエラマスㇷ゚　ネㇷ゚タ　アン？",
-            image: "",
+            image: "image/Picture 1.jpg",
             answers: [
                 'ユㇰ',
                 'チャペ',
@@ -277,6 +277,33 @@ for (let i = 0; i < buttonLength; i++) {
   $button[i].addEventListener("click", handleButtonClick);
 }
 
+
+// エンディングの表示とスコアの更新
+function showEndingPage() {
+  const quizBox = document.querySelector('.quiz_box');
+  const endingPage = document.createElement('div');
+  const scoreElement = document.createElement('p');
+  const endingImage = document.createElement('img');
+  const answerResultText = document.createElement('div');
+
+  endingPage.classList.add('ending_page');
+  endingPage.innerHTML = '<h2 class="result_title">パㇰノカ！</h2>';
+  endingImage.classList.add('image');
+  endingImage.src = "image/Ending.png";
+  answerResultText.classList.add('answer_result_text');
+
+  if (score > 0) {
+    answerResultText.innerHTML = '<p class="answer_result_text">ア=オケレナー！　' + score + '/' + quizLength + '　エ＝エラマン　ルウェ　ネー！ピㇼカワー！</p>';
+  } else {
+    answerResultText.innerHTML = '<p class="answer_result_text">ア=オケレナー！　' + score + '/' + quizLength + '　エ＝エラマン　ルウェ　ネー！<br>タン　クイズ　ホカンパ　シリ　アン？</p>';
+  }
+
+  endingPage.appendChild(scoreElement);
+  endingPage.appendChild(endingImage);
+  endingPage.appendChild(answerResultText);
+  quizBox.parentNode.replaceChild(endingPage, quizBox);
+}
+
 // クイズの進行と終了時の処理
 function proceedQuiz() {
   if (quizCount < quizLength) {
@@ -360,29 +387,3 @@ function initializeQuiz() {
   
 // クイズの初期化
 initializeQuiz();
-
-// エンディングの表示とスコアの更新
-function showEndingPage() {
-    const quizBox = document.querySelector('.quiz_box');
-    const endingPage = document.createElement('div');
-    const scoreElement = document.createElement('p');
-    const endingImage = document.createElement('img');
-    const answerResultText = document.createElement('div');
-  
-    endingPage.classList.add('ending_page');
-    endingPage.innerHTML = '<h2 class="result_title">パㇰノカ！</h2>';
-    endingImage.classList.add('image');
-    endingImage.src = "image/Ending.png";
-    answerResultText.classList.add('answer_result_text');
-  
-    if (score > 0) {
-      answerResultText.innerHTML = '<p class="answer_result_text">ア=オケレナー！　' + score + '/' + quizLength + '　エ＝エラマン　ルウェ　ネー！ピㇼカワー！</p>';
-    } else {
-      answerResultText.innerHTML = '<p class="answer_result_text">ア=オケレナー！　' + score + '/' + quizLength + '　エ＝エラマン　ルウェ　ネー！<br>タン　クイズ　ホカンパ　シリ　アン？</p>';
-    }
-  
-    endingPage.appendChild(scoreElement);
-    endingPage.appendChild(endingImage);
-    endingPage.appendChild(answerResultText);
-    quizBox.parentNode.replaceChild(endingPage, quizBox);
-}
