@@ -146,7 +146,7 @@ const quiz = [
         {
           questionNumber: 'ピシ #13',
           question: "シレトッコㇿクㇽ　イナンペ？",
-          image: "image/IMG_0006.jpg",
+          image: "image/siretokkorkur.jpg",
           answers: [
               'ピㇼカ　オトピ',
               'ポロ　チャロ',
